@@ -29,10 +29,11 @@ h1 {
 }
 
 .sidebar {
-    background-color: #313541;
     display: flex;
     flex-direction: column;
     max-width: 152px;
+    min-height: 100vh;
+    background-color: #313541;
 }
 
 .SidebarItem {
@@ -43,6 +44,8 @@ h1 {
     text-align: center;
     min-height: 100px;
     padding: 16px;
+    border-bottom: 1px solid #2C303B;
+    background-color: #313541;
     font-size: 1rem;
     color: #D5D5D5;
     cursor: pointer;
