@@ -1,0 +1,44 @@
+{
+    "places": [
+        {
+            "latitude":"1.286920",
+            "langitude":"103.854570",
+            "name":"Merlion",
+            "description": "The Merlion is the national personification of Singapore. Its name combines \"mer\" meaning the sea and \"lion\".",
+            "address": "10 Bayfront Avenue, Singapore",
+            "website": "https://www.marinabaysands.com"
+        },
+        {
+            "latitude":"1.287466",
+            "langitude":"103.851424",
+            "name":"Asian Civilisations Museum",
+            "description": "The Asian Civilisations Museum is an institution which forms a part of the four museums in Singapore, the other three being the Peranakan Museum at Old Tao Nan School, the National Museum of Singapore and the Singapore Art Museum.",
+            "address": "1 Empress Pl, Singapore",
+            "website": "https://www.nhb.gov.sg/acm/"
+        },
+        {
+            "latitude":"1.290555",
+            "langitude":"103.846188",
+            "name":"Clarke Quay",
+            "description": "Clarke Quay is a historical riverside quay in Singapore, located within the Singapore River Planning Area.",
+            "address": "3 River Valley Rd, Singapore",
+            "website": "https://www.capitaland.com/sg/malls/clarkequay/en.html"
+        },
+        {
+            "latitude":"1.295526",
+            "langitude":"103.845331",
+            "name":" Fort Canning Park",
+            "description": "Fort Canning Hill, formerly Government Hill, Singapore Hill and Bukit Larangan, or simply known as Fort Canning, is a prominent hill, about 48 metres high, in the southeast portion of Singapore, within the Central Area that forms Singapore's central business district.",
+            "address": "River Valley Rd, Singapore",
+            "website": "https://www.nparks.gov.sg/gardens-parks-and-nature/parks-and-nature-reserves/fort-canning-park"
+        },
+        {
+            "latitude":"1.302279",
+            "langitude":"103.837399",
+            "name":" Orchard Road",
+            "description": "Orchard Road is Singapore’s retail heart, with discount outlets, department stores and upscale boutiques, alongside luxury hotels.",
+            "address": "Orchard Rd, Singapore",
+            "website": "https://www.nparks.gov.sg/gardens-parks-and-nature/parks-and-nature-reserves/fort-canning-park"
+        }
+    ]
+}
