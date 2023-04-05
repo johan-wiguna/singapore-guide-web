@@ -3,7 +3,16 @@ import SidebarItem from './components/SidebarItem.jsx'
 import globe from './assets/earth.png'
 
 export default function App() {
-    const [count, setCount] = useState(0)
+    var placesData
+    var xhr = new XMLHttpRequest()
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            placesData = JSON.parse(xhr.responseText)
+            console.log(placesData)
+        }
+    }
+    xhr.open("GET", "data.json", true)
+    xhr.send()
 
     return (
         <div className="App">
@@ -29,6 +38,12 @@ export default function App() {
                     name="About"
                 />
             </aside>
+            
+            <div className="sidebar-detail">
+                <div className="menu">Merlion</div>
+                <div className="menu">Marina Bay Sands</div>
+                <div className="menu">Merlion</div>
+            </div>
         </div>
     )
 }
