@@ -79,6 +79,17 @@ export default function App() {
                 <div className="filter">Filter by favorite</div>
                 {placesElements}
             </div>
+
+            <div className="main-content">
+                <header>
+                    <div className="header-title">Top-rated tourist attractions in Singapore</div>
+                    <div className="header-actions">
+                        <i class="fa fa-cog"></i>
+                        <i class="fa fa-question-circle"></i>
+                        <i class="fa fa-times-circle"></i>
+                    </div>
+                </header>
+            </div>
         </div>
     )
 }

@@ -69,6 +69,8 @@ h1 {
 .sidebar-detail {
     padding: 36px 24px;
     background-color: #282C37;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 
 .sidebar-detail .filter {
@@ -95,4 +97,29 @@ h1 {
 
 .sidebar-detail .name:hover {
     background-color: #1c1f27;
+}
+
+.main-content {
+    width: 100%;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 48px;
+    background-color: #F4F7FA;
+}
+
+.header-title {
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #282C37;
+}
+
+.header-actions i {
+    margin-left: 18px;
+    font-size: 36px;
+    color: #647D80;
 }
