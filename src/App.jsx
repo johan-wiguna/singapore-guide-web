@@ -1,48 +1,83 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import SidebarItem from './components/SidebarItem.jsx'
 import globe from './assets/earth.png'
 
 export default function App() {
-    var placesData
-    var xhr = new XMLHttpRequest()
-    xhr.onreadystatechange = () => {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            placesData = JSON.parse(xhr.responseText)
-            console.log(placesData)
-        }
-    }
-    xhr.open("GET", "data.json", true)
-    xhr.send()
+    const [placesElements, setPlacesElements] = useState([])
+
+    useEffect(() => {
+        // var xhr = new XMLHttpRequest()
+        // xhr.onreadystatechange = () => {
+        //     if (xhr.readyState == 4 && xhr.status == 200) {
+        //         var placesData = JSON.parse(xhr.responseText).places
+
+        //         setPlacesElements(placesData.map(place => {
+        //             return (
+        //                 <div className="menu">
+        //                     <div className="name">
+        //                         {place.name}
+        //                     </div>
+        //                 </div>
+        //             )
+        //         }))
+        //     }
+        // }
+        // xhr.open("GET", "data.json", true)
+        // xhr.send()
+
+        $(document).ready(function(){
+            $.ajax({url: "data.json", success: res => {
+                var placesData = res.places
+                setPlacesElements(placesData.map(place => {
+                    return (
+                        <div className="menu">
+                            <div className="name">
+                                {place.name}
+                            </div>
+                        </div>
+                    )
+                }))
+            }})
+        })
+    }, [])
+
+    console.log("placesElements: ", placesElements)
 
     return (
         <div className="App">
             <aside className="sidebar">
-                <SidebarItem
-                    icon={globe}
-                    name="Browse"
-                />
-                <SidebarItem
-                    icon={globe}
-                    name="Suggest Attraction"
-                />
-                <SidebarItem
-                    icon={globe}
-                    name="Videos"
-                />
-                <SidebarItem
-                    icon={globe}
-                    name="Blog"
-                />
-                <SidebarItem
-                    icon={globe}
-                    name="About"
-                />
+                <nav>
+                    <SidebarItem
+                        key="1"
+                        icon={globe}
+                        name="Browse"
+                    />
+                    <SidebarItem
+                        key="2"
+                        icon={globe}
+                        name="Suggest Attraction"
+                    />
+                    <SidebarItem
+                        key="3"
+                        icon={globe}
+                        name="Videos"
+                    />
+                    <SidebarItem
+                        key="4"
+                        icon={globe}
+                        name="Blog"
+                    />
+                    <SidebarItem
+                        key="5"
+                        icon={globe}
+                        name="About"
+                    />
+                </nav>
             </aside>
             
             <div className="sidebar-detail">
-                <div className="menu">Merlion</div>
-                <div className="menu">Marina Bay Sands</div>
-                <div className="menu">Merlion</div>
+                <div className="filter">Filter by favorite</div>
+                {placesElements}
             </div>
         </div>
     )

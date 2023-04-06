@@ -27,7 +27,7 @@
         {
             "latitude":"1.295526",
             "langitude":"103.845331",
-            "name":" Fort Canning Park",
+            "name":"Fort Canning Park",
             "description": "Fort Canning Hill, formerly Government Hill, Singapore Hill and Bukit Larangan, or simply known as Fort Canning, is a prominent hill, about 48 metres high, in the southeast portion of Singapore, within the Central Area that forms Singapore's central business district.",
             "address": "River Valley Rd, Singapore",
             "website": "https://www.nparks.gov.sg/gardens-parks-and-nature/parks-and-nature-reserves/fort-canning-park"
@@ -35,10 +35,26 @@
         {
             "latitude":"1.302279",
             "langitude":"103.837399",
-            "name":" Orchard Road",
+            "name":"Orchard Road",
             "description": "Orchard Road is Singapore’s retail heart, with discount outlets, department stores and upscale boutiques, alongside luxury hotels.",
-            "address": "Orchard Rd, Singapore",
-            "website": "https://www.nparks.gov.sg/gardens-parks-and-nature/parks-and-nature-reserves/fort-canning-park"
+            "address": "Orchard Rd, Singapore"
+        },
+        {
+            "latitude":"1.289332",
+            "langitude":"103.863152",
+            "name":"Singapore Flyer",
+            "description": "The Singapore Flyer is an observation wheel at the Downtown Core district of Singapore. Officially opened on 15 April 2008, it has 28 air-conditioned capsules, each able to accommodate 28 passengers, and incorporates a three-story terminal building.",
+            "address": "30 Raffles Ave., Singapore",
+            "website": "https://www.singaporeflyer.com/"
+        },
+        {
+            "latitude":"1.283099",
+            "langitude":"103.860295",
+            "name":"Marina Bay Sands",
+            "description": "Marina Bay Sands (MBS) is an integrated resort (IR) with a hotel, casino, retail mall, as well as convention facilities and entertainment venues including theatres, nightclubs and a museum. Sitting on a 570,000 sq m waterfront site at Marina Bay, MBS is operated by Las Vegas Sands (LVS) Corp.1 Since its opening in April 2010, MBS has been one of LVS's most profitable properties. Its distinctive architecture includes three 55-storey hotel towers topped by the 12,400-square-metre SkyPark as well as the lotus-shaped ArtScience Museum.",
+            "attractions": ["ArtScience Museum", "Marina Bay Sands Skypark", "Double Helix Bridge"],
+            "address": "10 Bayfront Ave, Singapore",
+            "website": "https://www.marinabaysands.com/"
         }
     ]
 }
