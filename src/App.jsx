@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import SidebarItem from './components/SidebarItem.jsx'
-import globe from './assets/earth.png'
+import imgGlobe from './assets/earth.png'
+import imgMarker from './assets/marker.png'
 
 export default function App() {
     const [placesElements, setPlacesElements] = useState([])
@@ -37,11 +38,42 @@ export default function App() {
                         </div>
                     )
                 }))
+
+                initMap(placesData);
             }})
         })
     }, [])
 
-    console.log("placesElements: ", placesElements)
+    let map;
+
+    async function initMap(placesData) {
+        const { Map } = await google.maps.importLibrary("maps")
+
+        map = new Map(document.getElementById("map"), {
+            center: { lat: 1.286920, lng: 103.854570 },
+            zoom: 15,
+        })
+
+        for (var i = 0; i < placesData.length; i++) {
+            new google.maps.Marker({
+                position: { lat: Number(placesData[i].latitude), lng: Number(placesData[i].langitude) },
+                map,
+                icon: imgMarker,
+            });
+        }
+
+        const merlionMarker = new google.maps.Marker({
+            position: { lat: 1.286920, lng: 103.854570 },
+            map,
+            icon: imgMarker,
+        });
+
+        const marinaBaySandsMarker = new google.maps.Marker({
+            position: { lat: 1.283099, lng: 103.860295 },
+            map,
+            icon: imgMarker,
+        });
+    }
 
     return (
         <div className="App">
@@ -49,27 +81,27 @@ export default function App() {
                 <nav>
                     <SidebarItem
                         key="1"
-                        icon={globe}
+                        icon={imgGlobe}
                         name="Browse"
                     />
                     <SidebarItem
                         key="2"
-                        icon={globe}
+                        icon={imgGlobe}
                         name="Suggest Attraction"
                     />
                     <SidebarItem
                         key="3"
-                        icon={globe}
+                        icon={imgGlobe}
                         name="Videos"
                     />
                     <SidebarItem
                         key="4"
-                        icon={globe}
+                        icon={imgGlobe}
                         name="Blog"
                     />
                     <SidebarItem
                         key="5"
-                        icon={globe}
+                        icon={imgGlobe}
                         name="About"
                     />
                 </nav>
@@ -84,11 +116,13 @@ export default function App() {
                 <header>
                     <div className="header-title">Top-rated tourist attractions in Singapore</div>
                     <div className="header-actions">
-                        <i class="fa fa-cog"></i>
-                        <i class="fa fa-question-circle"></i>
-                        <i class="fa fa-times-circle"></i>
+                        <i className="fa fa-cog"></i>
+                        <i className="fa fa-question-circle"></i>
+                        <i className="fa fa-times-circle"></i>
                     </div>
                 </header>
+
+                <div id="map"></div>
             </div>
         </div>
     )
