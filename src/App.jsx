@@ -155,7 +155,35 @@ export default function App() {
                     </div>
                 </header>
 
-                <div id="map"></div>
+                <div className="place-container">
+                    <div id="map"></div>
+                    <div className="place-detail">
+                        <img src="https://source.unsplash.com/tNZZ-znU0LA" alt="" />
+                        <div className="name">
+                            Merlion
+                        </div>
+
+                        <div className="detail">
+                            <div className="overview">
+
+                            </div>
+
+                            <div className="description">
+
+                            </div>
+
+                            <div className="location-container">
+                                <i className="fa fa-map-marker icon"></i>
+                                <div className="address">8 Roadway</div>
+                            </div>
+
+                            <div className="web-container">
+                                <i className="fa fa-globe icon"></i>
+                                <div className="address">8 Roadway</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )
