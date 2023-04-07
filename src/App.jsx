@@ -6,6 +6,8 @@ import imgMarkerLarge from './assets/marker.png'
 
 export default function App() {
     const [placesElements, setPlacesElements] = useState([])
+    const [indexSelected, setIndexSelected] = useState(0)
+    const [data, setData] = useState([])
 
     useEffect(() => {
         // var xhr = new XMLHttpRequest()
@@ -31,6 +33,7 @@ export default function App() {
         $(document).ready(function(){
             $.ajax({url: "data.json", success: res => {
                 var placesData = res.places
+                setData(placesData)
                 setPlacesElements(placesData.map(place => {
                     return (
                         <div className="menu">
@@ -65,6 +68,7 @@ export default function App() {
 
         for (var i = 0; i < placesData.length; i++) {
             let marker = new google.maps.Marker({
+                index: i,
                 position: {
                     lat: Number(placesData[i].latitude),
                     lng: Number(placesData[i].langitude)
@@ -86,6 +90,7 @@ export default function App() {
             marker.addListener("click", () => {
                 map.setZoom(17)
                 map.setCenter(marker.getPosition())
+                setIndexSelected(marker.index)
             })
 
             marker.addListener("mouseover", () => {
@@ -158,28 +163,32 @@ export default function App() {
                 <div className="place-container">
                     <div id="map"></div>
                     <div className="place-detail">
-                        <img src="https://source.unsplash.com/tNZZ-znU0LA" alt="" />
+                        <img src={data.length > 0 && data[indexSelected].image} alt="" />
                         <div className="name">
-                            Merlion
+                            {data.length > 0 && data[indexSelected].name}
                         </div>
 
                         <div className="detail">
                             <div className="overview">
-
+                                {data.length > 0 && data[indexSelected].overview}
                             </div>
 
                             <div className="description">
-
+                                {data.length > 0 && data[indexSelected].description}
                             </div>
 
                             <div className="location-container">
                                 <i className="fa fa-map-marker icon"></i>
-                                <div className="address">8 Roadway</div>
+                                <div className="address">
+                                    {data.length > 0 && data[indexSelected].address}
+                                </div>
                             </div>
 
                             <div className="web-container">
                                 <i className="fa fa-globe icon"></i>
-                                <div className="address">8 Roadway</div>
+                                <a className="web" href="{data.length > 0 && data[indexSelected].description}">
+                                    {data.length > 0 && data[indexSelected].website}
+                                </a>
                             </div>
                         </div>
                     </div>

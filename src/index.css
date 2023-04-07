@@ -191,6 +191,14 @@ header {
     display: flex;
 }
 
+.place-detail .overview {
+    margin-bottom: 20px;
+}
+
+.place-detail .description {
+    margin-bottom: 48px;
+}
+
 .place-detail i {
     width: 12px;
     text-align: center;
