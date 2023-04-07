@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import SidebarItem from './components/SidebarItem.jsx'
 import imgGlobe from './assets/earth.png'
-import imgMarker from './assets/marker.png'
+import imgMarker from './assets/marker_small.png'
+import imgMarkerLarge from './assets/marker.png'
 
 export default function App() {
     const [placesElements, setPlacesElements] = useState([])
@@ -26,6 +27,7 @@ export default function App() {
         // xhr.open("GET", "data.json", true)
         // xhr.send()
 
+        // Fetch data from data.json
         $(document).ready(function(){
             $.ajax({url: "data.json", success: res => {
                 var placesData = res.places
@@ -34,6 +36,11 @@ export default function App() {
                         <div className="menu">
                             <div className="name">
                                 {place.name}
+                                {
+                                    place.hasOwnProperty('attractions')
+                                    &&
+                                    <i className="fa fa-caret-down"></i>
+                                }
                             </div>
                         </div>
                     )
@@ -54,25 +61,51 @@ export default function App() {
             zoom: 15,
         })
 
+        let markers = []
+
         for (var i = 0; i < placesData.length; i++) {
-            new google.maps.Marker({
-                position: { lat: Number(placesData[i].latitude), lng: Number(placesData[i].langitude) },
+            let marker = new google.maps.Marker({
+                position: {
+                    lat: Number(placesData[i].latitude),
+                    lng: Number(placesData[i].langitude)
+                },
                 map,
                 icon: imgMarker,
-            });
+                name: placesData[i].name,
+                description: placesData[i].description,
+                address: placesData[i].address,
+                label: {
+                    text: placesData[i].name,
+                    color: "white",
+                    className: "marker-label"
+                }
+            })
+
+            console.log(marker)
+
+            marker.addListener("click", () => {
+                map.setZoom(17)
+                map.setCenter(marker.getPosition())
+            })
+
+            marker.addListener("mouseover", () => {
+                marker.setIcon(imgMarkerLarge)
+                var label = marker.getLabel()
+                label.className = "marker-label-selected"
+                label.text = marker.name + '\n' + marker.address
+                marker.setLabel(label)
+            })
+
+            marker.addListener("mouseout", () => {
+                marker.setIcon(imgMarker)
+                var label = marker.getLabel()
+                label.className = "marker-label"
+                label.text = marker.name
+                marker.setLabel(label)
+            })
+
+            markers.push(marker)
         }
-
-        const merlionMarker = new google.maps.Marker({
-            position: { lat: 1.286920, lng: 103.854570 },
-            map,
-            icon: imgMarker,
-        });
-
-        const marinaBaySandsMarker = new google.maps.Marker({
-            position: { lat: 1.283099, lng: 103.860295 },
-            map,
-            icon: imgMarker,
-        });
     }
 
     return (
