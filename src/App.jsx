@@ -7,7 +7,7 @@ import imgVideo from './assets/video.png'
 import imgBlog from './assets/blog.png'
 import imgInfo from './assets/info.png'
 import imgMarker from './assets/marker_small.png'
-import imgMarkerLarge from './assets/marker.png'
+import imgMarkerLarge from './assets/marker_large.png'
 
 export default function App() {
     const [placesElements, setPlacesElements] = useState([])
@@ -34,11 +34,13 @@ export default function App() {
         // xhr.open("GET", "data.json", true)
         // xhr.send()
 
-        // Fetch data from data.json with AJAX
+        // Fetch data from data.json with AJAX (jQuery)
         $(document).ready(function(){
             $.ajax({url: "data.json", success: res => {
                 var placesData = res.places
+                // Set data state with the data fetched from data.json
                 setData(placesData)
+                // Create an array of elements containing attractions of each place (if any)
                 setPlacesElements(placesData.map(place => {
                     let attractionsElements = []
                     if (place.hasOwnProperty("attractions")) {
@@ -96,20 +98,28 @@ export default function App() {
         }))
     }, [idSelected])
 
-    // Integrate Google Maps API
+    // Integrate Google Maps API (based on Google Maps API documentation)
     let map;
 
     async function initMap(placesData) {
         const { Map } = await google.maps.importLibrary("maps")
 
+        // Set the center of the map, I set the center on Merlion
         map = new Map(document.getElementById("map"), {
             center: { lat: 1.286920, lng: 103.854570 },
             zoom: 15,
         })
 
+        // Create marker for each place and join it into an array
         let markers = []
 
         for (var i = 0; i < placesData.length; i++) {
+            // If place's name is longer than 18 characters, show only 18 characters
+            let name = placesData[i].name
+            if (name.length >= 19) {
+                name = name.substring(0, 19) + ".."
+            }
+
             let marker = new google.maps.Marker({
                 id: placesData[i].id,
                 position: {
@@ -117,36 +127,54 @@ export default function App() {
                     lng: Number(placesData[i].langitude)
                 },
                 map,
-                icon: imgMarker,
+                icon: {
+                    url: imgMarker,
+                    labelOrigin: new google.maps.Point(75, 22)
+                },
                 name: placesData[i].name,
                 description: placesData[i].description,
                 address: placesData[i].address,
                 label: {
-                    text: placesData[i].name,
+                    text: name,
                     color: "white",
                     className: "marker-label"
                 }
             })
 
+            // Set idSelected if a marker is clicked, so the detail panel will be shown
             marker.addListener("click", () => {
                 map.setZoom(17)
                 map.setCenter(marker.getPosition())
                 setIdSelected(marker.id)
             })
 
+            // Enlarge marker if it's hovered
             marker.addListener("mouseover", () => {
-                marker.setIcon(imgMarkerLarge)
+                marker.setIcon({
+                    url: imgMarkerLarge,
+                    labelOrigin: new google.maps.Point(130, 92)
+                })
                 var label = marker.getLabel()
                 label.className = "marker-label-selected"
                 label.text = marker.name + '\n' + marker.address
                 marker.setLabel(label)
             })
 
+            // Set marker back to normal if it's not hovered
             marker.addListener("mouseout", () => {
-                marker.setIcon(imgMarker)
+                marker.setIcon({
+                    url: imgMarker,
+                    labelOrigin: new google.maps.Point(75, 22),
+                })
                 var label = marker.getLabel()
                 label.className = "marker-label"
-                label.text = marker.name
+
+                // If place's name is longer than 18 characters, show only 18 characters
+                let name = marker.name
+                if (name.length >= 19) {
+                    name = name.substring(0, 19) + ".."
+                }
+                label.text = name
                 marker.setLabel(label)
             })
 
@@ -154,15 +182,12 @@ export default function App() {
         }
     }
 
+    // Function to set idSelected that determines which data has to be shown on the detail panel on the left
     function openDetail(obj) {
-        console.log("map", map)
-        console.log("obj", obj)
-        if (obj.hasOwnProperty("attractions")) {
-
-        }
         setIdSelected(obj.id)
     }
 
+    // Function to set idSelected to null which causes the detail panel to be hidden
     function closeDetail() {
         setIdSelected(null)
     }
