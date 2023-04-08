@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react'
 import SidebarItem from './components/SidebarItem.jsx'
 import DetailPanel from './components/DetailPanel.jsx'
-import imgGlobe from './assets/earth.png'
+import imgGlobe from './assets/globe.png'
+import imgMerlion from './assets/merlion.png'
+import imgVideo from './assets/video.png'
+import imgBlog from './assets/blog.png'
+import imgInfo from './assets/info.png'
 import imgMarker from './assets/marker_small.png'
 import imgMarkerLarge from './assets/marker.png'
 
@@ -36,6 +40,13 @@ export default function App() {
                 var placesData = res.places
                 setData(placesData)
                 setPlacesElements(placesData.map(place => {
+                    let attractionsElements = []
+                    if (place.hasOwnProperty("attractions")) {
+                        for (var i = 0; i < place.attractions.length; i++) {
+                            attractionsElements.push(<div className="attraction-name">{place.attractions[i]}</div>)
+                        }
+                    }
+
                     return (
                         <div className="menu">
                             <div className="name" onClick={() => openDetail(place)}>
@@ -45,6 +56,9 @@ export default function App() {
                                     &&
                                     <i className="fa fa-caret-down"></i>
                                 }
+                            </div>
+                            <div className="attractions">
+                                {attractionsElements}
                             </div>
                         </div>
                     )
@@ -57,6 +71,13 @@ export default function App() {
 
     useEffect(() => {
         setPlacesElements(data.map(place => {
+            let attractionsElements = []
+            if (place.hasOwnProperty("attractions")) {
+                for (var i = 0; i < place.attractions.length; i++) {
+                    attractionsElements.push(<div className="attraction-name">{place.attractions[i]}</div>)
+                }
+            }
+
             return (
                 <div className="menu">
                     <div className={`name ${idSelected == place.id ? "menu-selected" : ""}`} onClick={() => openDetail(place)}>
@@ -64,8 +85,11 @@ export default function App() {
                         {
                             place.hasOwnProperty('attractions')
                             &&
-                            <i className="fa fa-caret-down"></i>
+                            <i className={`fa ${idSelected == place.id ? "fa-caret-up" : "fa-caret-down"}`}></i>
                         }
+                    </div>
+                    <div className={`attractions ${idSelected == place.id ? "attractions-active" : ""}`}>
+                        {attractionsElements}
                     </div>
                 </div>
             )
@@ -133,6 +157,9 @@ export default function App() {
     function openDetail(obj) {
         console.log("map", map)
         console.log("obj", obj)
+        if (obj.hasOwnProperty("attractions")) {
+
+        }
         setIdSelected(obj.id)
     }
 
@@ -148,32 +175,40 @@ export default function App() {
                         key="1"
                         icon={imgGlobe}
                         name="Browse"
+                        selected="true"
                     />
                     <SidebarItem
                         key="2"
-                        icon={imgGlobe}
+                        icon={imgMerlion}
                         name="Suggest Attraction"
+                        selected="false"
                     />
                     <SidebarItem
                         key="3"
-                        icon={imgGlobe}
+                        icon={imgVideo}
                         name="Videos"
+                        selected="false"
                     />
                     <SidebarItem
                         key="4"
-                        icon={imgGlobe}
+                        icon={imgBlog}
                         name="Blog"
+                        selected="false"
                     />
                     <SidebarItem
                         key="5"
-                        icon={imgGlobe}
+                        icon={imgInfo}
                         name="About"
+                        selected="false"
                     />
                 </nav>
             </aside>
             
             <div className="sidebar-detail">
-                <div className="filter">Filter by favorite</div>
+                <div className="filter">
+                    <div className="filter-category">Filter by favorite</div>
+                    <i className="fa fa-caret-down"></i>
+                </div>
                 {placesElements}
             </div>
 
