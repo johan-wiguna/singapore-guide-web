@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
 import SidebarItem from './components/SidebarItem.jsx'
+import DetailPanel from './components/DetailPanel.jsx'
 import imgGlobe from './assets/earth.png'
 import imgMarker from './assets/marker_small.png'
 import imgMarkerLarge from './assets/marker.png'
 
 export default function App() {
     const [placesElements, setPlacesElements] = useState([])
-    const [indexSelected, setIndexSelected] = useState(0)
+    const [idSelected, setIdSelected] = useState(null)
     const [data, setData] = useState([])
 
     useEffect(() => {
@@ -29,7 +30,7 @@ export default function App() {
         // xhr.open("GET", "data.json", true)
         // xhr.send()
 
-        // Fetch data from data.json
+        // Fetch data from data.json with AJAX
         $(document).ready(function(){
             $.ajax({url: "data.json", success: res => {
                 var placesData = res.places
@@ -37,7 +38,7 @@ export default function App() {
                 setPlacesElements(placesData.map(place => {
                     return (
                         <div className="menu">
-                            <div className="name">
+                            <div className="name" onClick={() => openDetail(place)}>
                                 {place.name}
                                 {
                                     place.hasOwnProperty('attractions')
@@ -54,6 +55,24 @@ export default function App() {
         })
     }, [])
 
+    useEffect(() => {
+        setPlacesElements(data.map(place => {
+            return (
+                <div className="menu">
+                    <div className={`name ${idSelected == place.id ? "menu-selected" : ""}`} onClick={() => openDetail(place)}>
+                        {place.name}
+                        {
+                            place.hasOwnProperty('attractions')
+                            &&
+                            <i className="fa fa-caret-down"></i>
+                        }
+                    </div>
+                </div>
+            )
+        }))
+    }, [idSelected])
+
+    // Integrate Google Maps API
     let map;
 
     async function initMap(placesData) {
@@ -68,7 +87,7 @@ export default function App() {
 
         for (var i = 0; i < placesData.length; i++) {
             let marker = new google.maps.Marker({
-                index: i,
+                id: placesData[i].id,
                 position: {
                     lat: Number(placesData[i].latitude),
                     lng: Number(placesData[i].langitude)
@@ -85,12 +104,10 @@ export default function App() {
                 }
             })
 
-            console.log(marker)
-
             marker.addListener("click", () => {
                 map.setZoom(17)
                 map.setCenter(marker.getPosition())
-                setIndexSelected(marker.index)
+                setIdSelected(marker.id)
             })
 
             marker.addListener("mouseover", () => {
@@ -111,6 +128,16 @@ export default function App() {
 
             markers.push(marker)
         }
+    }
+
+    function openDetail(obj) {
+        console.log("map", map)
+        console.log("obj", obj)
+        setIdSelected(obj.id)
+    }
+
+    function closeDetail() {
+        setIdSelected(null)
     }
 
     return (
@@ -156,42 +183,20 @@ export default function App() {
                     <div className="header-actions">
                         <i className="fa fa-cog"></i>
                         <i className="fa fa-question-circle"></i>
-                        <i className="fa fa-times-circle"></i>
+                        <i className="fa fa-times-circle" onClick={closeDetail}></i>
                     </div>
                 </header>
 
                 <div className="place-container">
                     <div id="map"></div>
-                    <div className="place-detail">
-                        <img src={data.length > 0 && data[indexSelected].image} alt="" />
-                        <div className="name">
-                            {data.length > 0 && data[indexSelected].name}
-                        </div>
 
-                        <div className="detail">
-                            <div className="overview">
-                                {data.length > 0 && data[indexSelected].overview}
-                            </div>
-
-                            <div className="description">
-                                {data.length > 0 && data[indexSelected].description}
-                            </div>
-
-                            <div className="location-container">
-                                <i className="fa fa-map-marker icon"></i>
-                                <div className="address">
-                                    {data.length > 0 && data[indexSelected].address}
-                                </div>
-                            </div>
-
-                            <div className="web-container">
-                                <i className="fa fa-globe icon"></i>
-                                <a className="web" href="{data.length > 0 && data[indexSelected].description}">
-                                    {data.length > 0 && data[indexSelected].website}
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    {
+                        data.length > 0 && idSelected !== null &&
+                        <DetailPanel
+                            idSelected={idSelected}
+                            data={data}
+                        />
+                    }
                 </div>
             </div>
         </div>

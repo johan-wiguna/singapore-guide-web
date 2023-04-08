@@ -1,6 +1,7 @@
 {
     "places": [
         {
+            "id": "1",
             "latitude":"1.286920",
             "langitude":"103.854570",
             "name":"Merlion",
@@ -11,6 +12,7 @@
             "website": "https://www.marinabaysands.com"
         },
         {
+            "id": "2",
             "latitude":"1.283099",
             "langitude":"103.860295",
             "name":"Marina Bay Sands",
@@ -19,9 +21,10 @@
             "description": "Sitting on a 570,000 sq m waterfront site at Marina Bay, MBS is operated by Las Vegas Sands (LVS). Since its opening in April 2010, MBS has been one of LVS's most profitable properties. Its distinctive architecture includes three 55-storey hotel towers topped by the 12,400-square-metre SkyPark as well as the lotus-shaped ArtScience Museum.",
             "attractions": ["ArtScience Museum", "Marina Bay Sands Skypark", "Double Helix Bridge"],
             "address": "10 Bayfront Ave, Singapore",
-            "website": "https://www.marinabaysands.com/"
+            "website": "https://www.marinabaysands.com"
         },
         {
+            "id": "3",
             "latitude":"1.281790",
             "langitude":"103.863954",
             "name":"Gardens By The Bay",
@@ -30,19 +33,22 @@
             "description": "The Gardens is led by a multidisciplinary team of professionals who have been involved in the greening of Singapore and had worked alongside international and local experts to develop the Gardens. It has an in-house team of skilled landscape designers, horticulturists, arborists, engineers, plant health, garden and turf management experts, as well as plant research and orchid breeding professionals, who leverage on the extensive global network of plant sources cultivated during the development days, to continuously curate and grow the Gardens.",
             "attractions": ["Cloud Forest", "Supertree Grove", "Flower Dome", "Active Garden", "Bay East Garden", "Dragonfly & Kingfisher Lakes"],
             "address": "18 Marina Gardens Dr, Singapore",
-            "website": "https://www.gardensbythebay.com.sg/"
+            "website": "https://www.gardensbythebay.com.sg"
         },
         {
+            "id": "4",
             "latitude":"1.284193",
             "langitude":"103.843362",
             "name":"Chinatown",
             "image": "https://media.timeout.com/images/105158756/750/422/image.jpg",
-            "overview": "Chinatown's maze of narrow roads includes Chinatown Food Street, with its restaurants serving traditional fare like Hainanese chicken rice, noodles and satay. Souvenir shops and indie boutiques dot the area, offering clothes, crafts and antiques, while Club Street is full of trendy wine bars. Cultural institutions here include the 1827 Sri Mariamman Temple and the ornate Buddha Tooth Relic Temple and Museum.",
+            "overview": "Chinatown's maze of narrow roads includes Chinatown Food Street, with its restaurants serving traditional fare like Hainanese chicken rice, noodles and satay.",
+            "description": "Souvenir shops and indie boutiques dot the area, offering clothes, crafts and antiques, while Club Street is full of trendy wine bars. Cultural institutions here include the 1827 Sri Mariamman Temple and the ornate Buddha Tooth Relic Temple and Museum.",
             "attractions": ["Chinatown Street Market", "Sri Mariamman Temple", "Buddha Tooth Relic Temple"],
             "address": "10 Bayfront Ave, Singapore",
-            "website": "https://chinatown.sg/"
+            "website": "https://chinatown.sg"
         },
         {
+            "id": "5",
             "latitude":"1.287466",
             "langitude":"103.851424",
             "name":"Asian Civilisations Museum",
@@ -50,19 +56,21 @@
             "overview": "The Asian Civilisations Museum (ACM) is Singapore's national museum of Asian antiquities and decorative art.",
             "description": "As the only museum in Asia with a pan-Asian scope, ACM is devoted to exploring the rich artistic heritage of Asia through our outstanding collection of masterpieces, and through ground-breaking special exhibitions. ACM focuses on the many historical connections between cultures and civilisations in Asia, and between Asia and the world.",
             "address": "1 Empress Pl, Singapore",
-            "website": "https://www.nhb.gov.sg/acm/"
+            "website": "https://www.nhb.gov.sg/acm"
         },
         {
+            "id": "6",
             "latitude":"1.290555",
             "langitude":"103.846188",
             "name":"Clarke Quay",
-            "image": "https://source.unsplash.com/7aRoa9fzLmo",
+            "image": "https://a.cdn-hotels.com/gdcs/production25/d874/7a81c1ec-88bf-46c5-8067-9c167e0dad14.jpg",
             "overview": "The Merlion is the national personification of Singapore.",
             "description": "Clarke Quay is a historical riverside quay in Singapore, located within the Singapore River Planning Area.",
             "address": "3 River Valley Rd, Singapore",
-            "website": "https://www.capitaland.com/sg/malls/clarkequay/en.html"
+            "website": "https://www.capitaland.com/sg/malls/clarkequay"
         },
         {
+            "id": "7",
             "latitude":"1.295526",
             "langitude":"103.845331",
             "name":"Fort Canning Park",
@@ -73,6 +81,7 @@
             "website": "https://www.nparks.gov.sg/gardens-parks-and-nature/parks-and-nature-reserves/fort-canning-park"
         },
         {
+            "id": "8",
             "latitude":"1.289332",
             "langitude":"103.863152",
             "name":"Singapore Flyer",
@@ -80,16 +89,18 @@
             "overview": "The Merlion is the national personification of Singapore.",
             "description": "The Singapore Flyer is an observation wheel at the Downtown Core district of Singapore. Officially opened on 15 April 2008, it has 28 air-conditioned capsules, each able to accommodate 28 passengers, and incorporates a three-story terminal building.",
             "address": "30 Raffles Ave., Singapore",
-            "website": "https://www.singaporeflyer.com/"
+            "website": "https://www.singaporeflyer.com"
         },
         {
+            "id": "9",
             "latitude":"1.302279",
             "langitude":"103.837399",
             "name":"Orchard Road",
             "image": "https://www.visitsingapore.com/id_id/see-do-singapore/places-to-see/orchard/_jcr_content/par-carousel/carousel_detailpage/carousel/item_2.thumbnail.carousel-img.740.416.jpg",
-            "overview": "The Merlion is the national personification of Singapore.",
-            "description": "Orchard Road is Singapore’s retail heart, with discount outlets, department stores and upscale boutiques, alongside luxury hotels.",
-            "address": "Orchard Rd, Singapore"
+            "overview": "Orchard Road is Singapore's retail heart, with discount outlets, department stores and upscale boutiques, alongside luxury hotels.",
+            "description": "It is the must-visit location in Singapore for those looking for a bit of retail therapy (which many do come to Singapore for). The wide avenue is lined with a whole host of shopping centres – from the original Chinese emporiums to modern megamalls made from steel and glass.",
+            "address": "Orchard Rd, Singapore",
+            "website": "https://www.orchardroad.org"
         }
     ]
 }
